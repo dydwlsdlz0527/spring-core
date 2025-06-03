@@ -28,3 +28,15 @@ public class AppConfig {
 
 - AppConfig 객체는 `memoryMemberRepository` 객체를 생성하고 그 참조값을 `memberServiceImpl`을 생성하면서 생성자로 전달한다.
 - 클라이언트인 `memberServiceImpl` 입장에서 보면 의존 관계를 마치 외부에서 주입해주는 것 같다고 해서 DI(Dependency Injection) 의존관계 주입 또는 의존성 주입이라 한다.
+
+### AppConfig를 통한 할인 정책 변경
+![AppConfig Change](/images/appconfig-change.png)
+```java
+    // AppConfig.java
+    public DiscountPolicy discountPolicy() {
+        // return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
+    }
+```
+- 구성 영역인 AppConfig를 통해 변경할 정책을 변경하면 된다.   
+  **사용 영역**의 어떤 코드도 변경할 필요가 없다.

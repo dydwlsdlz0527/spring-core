@@ -1,21 +1,23 @@
 ## 좋은 객체 지향 설계의 5가지 원칙
-- SRP : 단일 책임 원칙(single responsibility principle)
-- OCP : 개방-폐쇄 원칙(Open/closed principle)
-- LSP : 리스코프 치환 원칙(Liskov substitution principle)
-- ISP : 인터페이스 분리 원칙(Interface segregation principle)
-- DIP : 의존 역전 원칙(Dependency inversion principle)
+- SRP : 단일 책임 원칙(Single Responsibility Principle)
+- OCP : 개방-폐쇄 원칙(Open/Closed Principle)
+- LSP : 리스코프 치환 원칙(Liskov Substitution Principle)
+- ISP : 인터페이스 분리 원칙(Interface Segregation Principle)
+- DIP : 의존 역전 원칙(Dependency Inversion Principle)
 ---
 ### SRP 단일 책임 원칙
-- 한 클래스는 하나의 책임만 가져야 한다.
+- **"한 클래스는 하나의 책임만 가져야 한다."**
 - 하나의 책임이라는 것은 모호하다.
   - 클 수 있고, 작을 수 있다.
   - 문맥과 상황에 따라 다르다.
 - **중요한 기준은 변경**이다. 변경이 있을 때 파급 효과가 적으면 단일 책임 원칙을 잘 따른 것
-- 예) UI 변경, 객체의 생성과 사용을 분리
+- 예) UI 변경, 객체의 생성과 사용을 분리(구현 객체는 AppConfig가 클라이언트 객체는 실행하는 책임만 담당)
 ### OCP 개방-폐쇄 원칙
 - 소프트웨어 요소는 **확장에는 열려** 있으나 변경에는 닫혀 있어야 한다.
 - 다형성 활용(역할과 구현의 분리)
 - 인터페이스를 구현한 새로운 클래스를 하나 만들어서 새로운 기능 구현
+- 예) `FixDiscountPolicy`-> `RateDiscountPolicy`로 변경해서 클라이언트 코드에 주입하므로 클라이언트 코드는 변경하지 않아도 됨.
+- **소프트웨어 요소를 새롭게 확장해도 사용 영역의 변경은 닫혀 있다!**
 ```java
 public class MemberService {
     // private MemberRepository memberRepository = new MongoMemberRepository();
@@ -40,7 +42,7 @@ public class MemberService {
 - 분리하면 정비 인터페이스 자체가 변해도 운전자 클라이언트에 영향을 주지 않음.
 - 인터페이스가 명확해지고, 대체 가능성이 높아진다.
 ### DIP 의존 역전 원칙
-- 프로그래머는 "추상화에 의존해야지, 구체화에 의존하면 안된다." 의존성 주입은 이 원칙을 따르는 방법 중 하나다.
+- 프로그래머는 **"추상화에 의존해야지, 구체화에 의존하면 안된다."** 의존성 주입은 이 원칙을 따르는 방법 중 하나다.
 - 쉽게 이야기해서 구현 클래스에 의존하지 말고, 인터페이스에 의존하라는 뜻
 - 앞에서 이야기한 **역할(Role)에 의존하게 해야 한다는 것과 같다.** 객체 세상도 클라이언트가 인터페이스에 의존해야 유연하게 구현체를 변경할 수 있다. 구현체에 의존하게 되면 변경이 아주 어려워진다.
 ---
